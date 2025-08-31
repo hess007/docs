@@ -1,38 +1,118 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: " Fermi LAT analysis of the VHE survey clusters"
+description: "Contains the Fermi LAT analysis of the 10 VHE survey clusters"
 ---
 
-## Get started in three steps
+# Fermi-LAT Data Analysis of VHE Clusters
 
-Get your documentation site running locally and make your first customization.
+## Analysis Settings
+
+For the current analysis, we utilized the **Pass8 (P8R3)** algorithms and data spanning 17 years, from August 4, 2008, to August 2,  2025. A binned maximum likelihood analysis was conducted with a bin size of 0.1°, employing the latest standard Fermi Science Tools \*\*(2.4.0) \*\*software package. We selected events with energies ranging from \*\*100 MeV to 1 TeV \*\*within a region of interest (ROI) of 10° around the position of each VHE cluster, utilizing the P8R3_SOURCE_V6 instrument response functions (IRF).
+
+<Info>
+  All maps are displayed with a \*\*linear scale, \*\*wehre the color gradient changes evenly with the data. However, each map's color range is scaled independently based on its own **maximum value (vmax)**
+</Info>
+
+| **Parameters**             | **Values**                                          |
+| :------------------------- | :-------------------------------------------------- |
+| Fermi Algorithms           | Pass8 (P8R3)                                        |
+| Fermi Science Tools        | **2.4.0** released **04/21/2025**.                  |
+| Start Time  (MET)          | August 4, 2008 (239557417)                          |
+| Stop Time (MET)            | August 2, 2025 (773509417)                          |
+| Total Duration             | 206 Months                                          |
+| Energy Range               | \*\*100 MeV to 1 TeV \*\*                           |
+| ROI                        | 10 degree                                           |
+| IRF                        | P8R3_SOURCE_V6                                      |
+| Event Class                | 128                                                 |
+| Event type                 | 3                                                   |
+| Galactic diffuse emission  | **gll_iem_v07**                                     |
+| isotropic diffuse emission | **iso_P8R3_SOURCE_V3_v1**                           |
+| LAT Source Catalog         | **gll_psc\_**[**v35.fit**](http://v35.fit)\*\* \*\* |
+| Packages                   | Enrico 0.1 /Python3.11                              |
+
+<Warning>
+  _Unfortunately, several of the remaining jobs on the ZIH clusters were cancelled multiple times because they either  exceeded the available resource limits (CPU/memory) or encountered other issues..Therefore the Number of CPUs per task  and the memory requirements will be reduced, and the running time limit will be increased to more than 80 hours.  Alternatively, the reanalysis is running  on the hess9 lsw cluster, where full control is possible._
+</Warning>
+
+<Card title="Detection Summary" icon="sparkles">
+  | Nr. | Cluster | TS Detection | Energy Flux              | Spectral Index |
+  | :-- | :------ | :----------- | :----------------------- | :------------- |
+  | 1   | ID-122  | 6266         | 2.24 e-5 \+/-   9.96 e-7 | 1.81 \+/- 0.02 |
+  | 2   | ID-162  | 915          | 1.05 e-5 \+/- 8.80 e-7   | 1.64 \+/- 0.03 |
+  | 3   | ID-248  | 2830         | 1.32 e-5 \+/- 7.58 e-7   | 1.82 \+/- 0.02 |
+  | 4   | ID-97   | 3705         | 1.50 e-5 \+/- 6.57 e-7   | 1.76 \+/- 0.02 |
+  | 5   | ID-93   | 1391         | 8.71 E-5  \+/- 9.14 E-7  | 1.84 \+/- 0.03 |
+</Card>
+
+## Binned Likelihood Lightcurves
+
+This section shows the generated likelihood-binned light curves for all ten VHE clusters. The light curves span a period of 17 years. Three different binnings were tested ( 17, 34, and 68 bins ) corresponding to 1 year, 6 months and 3 months, respectively. Additionally, the Bayesian Blocks method was applied to the generated light curves to quantify the variability of each cluster and to characterize their activity states. These were overplotted as red blocks on the light curves.
+
+<Note>
+  The table below shows per‑bin results from a likelihood-based yearly binned light-curve analysis for Cluster ID-97 . For each time bin it lists the bin midpoint in Mission Elapsed Time (MET) and the bin duration (Delta_Time), followed by the measured photon flux in units of ph cm⁻² s⁻¹ (Flux) and its 1sigma uncertainty (Delta_Flux).
+</Note>
+
+- Yearly Binned Lightcurves
+- Monthly Binned LightcurvesS
+
+<img
+  src="/images/ID-97_Maps.png"
+  alt="ID 97 Maps Pn"
+  title="ID 97 Maps Pn"
+  className="mx-auto"
+  style={{ width:"52%" }}
+/>
+
+<Frame>
+  
+
+  <img
+    src="/images/SED_ID-97_PowerLaw.png"
+    alt="SED ID 97 Power Law Pn"
+    title="SED ID 97 Power Law Pn"
+    className="mx-auto"
+  />
+
+  ### **Spectral Energy Density of Cluster  Adjust the caption and image  here.**
+
+  <img
+    src="/images/SED_ID-97_PowerLaw_CountsPlot.png"
+    alt="SED ID 97 Power Law Counts Plot Pn"
+    title="SED ID 97 Power Law Counts Plot Pn"
+    style={{ width:"76%" }}
+  />
+
+  sssssseeirei reir erei ie  kkd
+</Frame>
 
 ### Step 1: Set up your local environment
 
 <AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
+  <Accordion title="Clone your docs locally" icon="copy">
     During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
+
     To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
   </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
+  <Accordion title="Start the preview server" icon="rectangle-terminal">
     1. Install the Mintlify CLI: `npm i -g mint`
     2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
+    3. Open `http://localhost:3000` to see your docs live\!
+
+    <Tip>
+      Your preview updates automatically as you edit files.
+    </Tip>
   </Accordion>
 </AccordionGroup>
 
 ### Step 2: Deploy your changes
 
 <AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
+  <Accordion title="Install our GitHub app" icon="github">
     Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
+
     Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
+  </Accordion>
+  <Accordion title="Update your site name and colors" icon="palette">
     For a first change, let's update the name and colors of your docs site.
 
     1. Open `docs.json` in your editor.
@@ -40,15 +120,17 @@ Get your documentation site running locally and make your first customization.
     3. Update the `"colors"` to match your brand.
     4. Save and see your changes instantly at `http://localhost:3000`.
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
+    <Tip>
+      Try changing the primary color to see an immediate difference\!
+    </Tip>
   </Accordion>
 </AccordionGroup>
 
 ### Step 3: Go live
 
-<Accordion icon="rocket" title="Publish your docs">
+<Accordion title="Publish your docs" icon="rocket">
   1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
+  2. Your docs will update and be live in moments\!
 </Accordion>
 
 ## Next steps
@@ -56,23 +138,18 @@ Get your documentation site running locally and make your first customization.
 Now that you have your docs running, explore these key features:
 
 <CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
+  <Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
+    Learn MDX syntax and start writing your documentation.
+  </Card>
+  <Card title="Customize style" icon="palette" href="/essentials/settings">
+    Make your docs match your brand perfectly.
+  </Card>
+  <Card title="Add code examples" icon="square-code" href="/essentials/code">
+    Include syntax-highlighted code blocks.
+  </Card>
+  <Card title="API documentation" icon="code" href="/api-reference/introduction">
+    Auto-generate API docs from OpenAPI specs.
+  </Card>
 </CardGroup>
 
 <Note>
